@@ -28,136 +28,137 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.CbFragen = new System.Windows.Forms.ComboBox();
-            this.CbAntworten = new System.Windows.Forms.ComboBox();
-            this.BtnRundeStarten = new System.Windows.Forms.Button();
-            this.RbAntwort1 = new System.Windows.Forms.RadioButton();
-            this.RbAntwort2 = new System.Windows.Forms.RadioButton();
-            this.RbAntwort3 = new System.Windows.Forms.RadioButton();
-            this.LbFrage = new System.Windows.Forms.Label();
-            this.RbAntwort4 = new System.Windows.Forms.RadioButton();
-            this.BtnNeueFrage = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            label1 = new Label();
+            CbFragen = new ComboBox();
+            CbAntworten = new ComboBox();
+            BtnRundeStarten = new Button();
+            RbAntwort1 = new RadioButton();
+            RbAntwort2 = new RadioButton();
+            RbAntwort3 = new RadioButton();
+            LbFrage = new Label();
+            RbAntwort4 = new RadioButton();
+            BtnNeueFrage = new Button();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(293, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 45);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fragen wählen";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(12, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(226, 45);
+            label1.TabIndex = 0;
+            label1.Text = "Fragen wählen";
+            label1.Click += label1_Click;
             // 
             // CbFragen
             // 
-            this.CbFragen.FormattingEnabled = true;
-            this.CbFragen.Location = new System.Drawing.Point(53, 85);
-            this.CbFragen.Name = "CbFragen";
-            this.CbFragen.Size = new System.Drawing.Size(132, 23);
-            this.CbFragen.TabIndex = 2;
-            this.CbFragen.Text = "Fragenart";
-            this.CbFragen.SelectedIndexChanged += new System.EventHandler(this.CbFragen_SelectedIndexChanged);
+            CbFragen.FormattingEnabled = true;
+            CbFragen.Location = new Point(53, 85);
+            CbFragen.Name = "CbFragen";
+            CbFragen.Size = new Size(132, 23);
+            CbFragen.TabIndex = 2;
+            CbFragen.Text = "Fragenart";
+            CbFragen.SelectedIndexChanged += CbFragen_SelectedIndexChanged;
             // 
             // CbAntworten
             // 
-            this.CbAntworten.FormattingEnabled = true;
-            this.CbAntworten.Location = new System.Drawing.Point(53, 134);
-            this.CbAntworten.Name = "CbAntworten";
-            this.CbAntworten.Size = new System.Drawing.Size(132, 23);
-            this.CbAntworten.TabIndex = 3;
-            this.CbAntworten.Text = "Antworten";
+            CbAntworten.FormattingEnabled = true;
+            CbAntworten.Location = new Point(53, 134);
+            CbAntworten.Name = "CbAntworten";
+            CbAntworten.Size = new Size(132, 23);
+            CbAntworten.TabIndex = 3;
+            CbAntworten.Text = "Antworten";
             // 
             // BtnRundeStarten
             // 
-            this.BtnRundeStarten.Location = new System.Drawing.Point(53, 193);
-            this.BtnRundeStarten.Name = "BtnRundeStarten";
-            this.BtnRundeStarten.Size = new System.Drawing.Size(132, 23);
-            this.BtnRundeStarten.TabIndex = 4;
-            this.BtnRundeStarten.Text = "Runde starten";
-            this.BtnRundeStarten.UseVisualStyleBackColor = true;
-            this.BtnRundeStarten.Click += new System.EventHandler(this.BtnRundeStarten_Click);
+            BtnRundeStarten.Location = new Point(53, 193);
+            BtnRundeStarten.Name = "BtnRundeStarten";
+            BtnRundeStarten.Size = new Size(132, 23);
+            BtnRundeStarten.TabIndex = 4;
+            BtnRundeStarten.Text = "Runde starten";
+            BtnRundeStarten.UseVisualStyleBackColor = true;
+            BtnRundeStarten.Click += BtnRundeStarten_Click;
             // 
             // RbAntwort1
             // 
-            this.RbAntwort1.AutoSize = true;
-            this.RbAntwort1.Location = new System.Drawing.Point(267, 262);
-            this.RbAntwort1.Name = "RbAntwort1";
-            this.RbAntwort1.Size = new System.Drawing.Size(14, 13);
-            this.RbAntwort1.TabIndex = 5;
-            this.RbAntwort1.TabStop = true;
-            this.RbAntwort1.UseVisualStyleBackColor = true;
+            RbAntwort1.AutoSize = true;
+            RbAntwort1.Location = new Point(267, 262);
+            RbAntwort1.Name = "RbAntwort1";
+            RbAntwort1.Size = new Size(14, 13);
+            RbAntwort1.TabIndex = 5;
+            RbAntwort1.TabStop = true;
+            RbAntwort1.UseVisualStyleBackColor = true;
             // 
             // RbAntwort2
             // 
-            this.RbAntwort2.AutoSize = true;
-            this.RbAntwort2.Location = new System.Drawing.Point(386, 262);
-            this.RbAntwort2.Name = "RbAntwort2";
-            this.RbAntwort2.Size = new System.Drawing.Size(14, 13);
-            this.RbAntwort2.TabIndex = 6;
-            this.RbAntwort2.TabStop = true;
-            this.RbAntwort2.UseVisualStyleBackColor = true;
+            RbAntwort2.AutoSize = true;
+            RbAntwort2.Location = new Point(386, 262);
+            RbAntwort2.Name = "RbAntwort2";
+            RbAntwort2.Size = new Size(14, 13);
+            RbAntwort2.TabIndex = 6;
+            RbAntwort2.TabStop = true;
+            RbAntwort2.UseVisualStyleBackColor = true;
             // 
             // RbAntwort3
             // 
-            this.RbAntwort3.AutoSize = true;
-            this.RbAntwort3.Location = new System.Drawing.Point(498, 262);
-            this.RbAntwort3.Name = "RbAntwort3";
-            this.RbAntwort3.Size = new System.Drawing.Size(14, 13);
-            this.RbAntwort3.TabIndex = 7;
-            this.RbAntwort3.TabStop = true;
-            this.RbAntwort3.UseVisualStyleBackColor = true;
+            RbAntwort3.AutoSize = true;
+            RbAntwort3.Location = new Point(498, 262);
+            RbAntwort3.Name = "RbAntwort3";
+            RbAntwort3.Size = new Size(14, 13);
+            RbAntwort3.TabIndex = 7;
+            RbAntwort3.TabStop = true;
+            RbAntwort3.UseVisualStyleBackColor = true;
             // 
             // LbFrage
             // 
-            this.LbFrage.AutoSize = true;
-            this.LbFrage.Location = new System.Drawing.Point(416, 218);
-            this.LbFrage.Name = "LbFrage";
-            this.LbFrage.Size = new System.Drawing.Size(36, 15);
-            this.LbFrage.TabIndex = 8;
-            this.LbFrage.Text = "Frage";
+            LbFrage.AutoSize = true;
+            LbFrage.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            LbFrage.Location = new Point(481, 134);
+            LbFrage.Name = "LbFrage";
+            LbFrage.Size = new Size(0, 45);
+            LbFrage.TabIndex = 8;
+            LbFrage.TextChanged += LbFrage_TextChanged;
             // 
             // RbAntwort4
             // 
-            this.RbAntwort4.AutoSize = true;
-            this.RbAntwort4.Location = new System.Drawing.Point(608, 262);
-            this.RbAntwort4.Name = "RbAntwort4";
-            this.RbAntwort4.Size = new System.Drawing.Size(14, 13);
-            this.RbAntwort4.TabIndex = 9;
-            this.RbAntwort4.TabStop = true;
-            this.RbAntwort4.UseVisualStyleBackColor = true;
+            RbAntwort4.AutoSize = true;
+            RbAntwort4.Location = new Point(608, 262);
+            RbAntwort4.Name = "RbAntwort4";
+            RbAntwort4.Size = new Size(14, 13);
+            RbAntwort4.TabIndex = 9;
+            RbAntwort4.TabStop = true;
+            RbAntwort4.UseVisualStyleBackColor = true;
             // 
             // BtnNeueFrage
             // 
-            this.BtnNeueFrage.Location = new System.Drawing.Point(406, 315);
-            this.BtnNeueFrage.Name = "BtnNeueFrage";
-            this.BtnNeueFrage.Size = new System.Drawing.Size(75, 23);
-            this.BtnNeueFrage.TabIndex = 10;
-            this.BtnNeueFrage.Text = "Neue Frage";
-            this.BtnNeueFrage.UseVisualStyleBackColor = true;
+            BtnNeueFrage.Location = new Point(406, 315);
+            BtnNeueFrage.Name = "BtnNeueFrage";
+            BtnNeueFrage.Size = new Size(75, 23);
+            BtnNeueFrage.TabIndex = 10;
+            BtnNeueFrage.Text = "Neue Frage";
+            BtnNeueFrage.UseVisualStyleBackColor = true;
+            BtnNeueFrage.Click += BtnNeueFrage_Click;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.BtnNeueFrage);
-            this.Controls.Add(this.RbAntwort4);
-            this.Controls.Add(this.LbFrage);
-            this.Controls.Add(this.RbAntwort3);
-            this.Controls.Add(this.RbAntwort2);
-            this.Controls.Add(this.RbAntwort1);
-            this.Controls.Add(this.BtnRundeStarten);
-            this.Controls.Add(this.CbAntworten);
-            this.Controls.Add(this.CbFragen);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Quiz";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(BtnNeueFrage);
+            Controls.Add(RbAntwort4);
+            Controls.Add(LbFrage);
+            Controls.Add(RbAntwort3);
+            Controls.Add(RbAntwort2);
+            Controls.Add(RbAntwort1);
+            Controls.Add(BtnRundeStarten);
+            Controls.Add(CbAntworten);
+            Controls.Add(CbFragen);
+            Controls.Add(label1);
+            Name = "Form1";
+            Text = "Quiz";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

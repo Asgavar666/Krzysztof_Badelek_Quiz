@@ -7,56 +7,97 @@ using MySql.Data.MySqlClient;
 
 namespace Krzysztof_Badelek_Quiz
 {
-    public partial  class Datenbank
+    public partial class Datenbank
     {
-        public static List<string> GetFragen()
-        {
-            List<string> fragenListe = new List<string>();
-            string sqlconn = "Server=localhost;Database=Quiz;User ID=root;Password=;";
-            //MySqlConnection conn = new MySqlConnection(sqlconn);
-
-            
-
-           
-           // string fragenString = frage;
-            
-
-              //  connection.Open();
-        using(var conn = new MySqlConnection(sqlconn))
-            {
-                conn.Open();
-                MySqlCommand query = new MySqlCommand("SELECT * FROM Frage ORDER BY RAND() LIMIT BY 10;");
-                using (MySqlDataReader reader = query.ExecuteReader())
-                                {
-                                    while (reader.Read())
-                                    {
-                                        // Assuming the result is a string, change the data type accordingly
-                                        string resultValue = reader.GetString(0);
-
-                                        // Add the value to the list
-                                        fragenListe.Add(resultValue);
-                                    }
-                                }
-                conn.Close();
-            }
-                
-               // query.Parameters.AddWithValue(fragenString, fragenString);
-                //query.Prepare();
-                
-
-               
-
-                
-
-            return fragenListe;
-            
-        }
-           
-            
-           
-            
         
-    }
+        //private const string VerbindungsString = "Server=localhost;Database=Quiz;User=root;Password='';";
+
+        public Datenbank()
+        {
+
+        }
+        public string GetRichtigeAntwort(string frage, string antwort, string frageValue)
+        {
+            string connStr = "Server=localhost;Database=Quiz;User=root;Password='';";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            string sql = $"SELECT {antwort} FROM frage WHERE {frage} = '{frageValue}'";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            string correctAnswer = "";
+            while (rdr.Read())
+            {
+                correctAnswer = Convert.ToString(rdr[0]);
+            }
+
+            rdr.Close();
+            conn.Close();
+
+            return correctAnswer;
+        }
+
+        public List<string> GetRandomAntwort(string frage, string antwort, string frageValue)
+        {
+            List<string> antwortList = new List<string>();
+            string connStr = "Server=localhost;Database=Quiz;User=root;Password='';";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            string sql = $"SELECT {antwort} FROM frage WHERE {frage} != '{frageValue}' ORDER BY RAND() LIMIT 3 ";
     
-   
+       
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            List<string> list = new List<string>();
+            while (rdr.Read())
+            {
+                for (int i = 0; i < rdr.FieldCount; i++)
+                {
+                    string value = Convert.ToString(rdr[i]);
+                    antwortList.Add(value);
+                }
+            }
+
+            rdr.Close();
+            conn.Close();
+
+            return antwortList;
+        }
+
+
+        public List<string> GetRandomFragen(string fragenArt)
+        {
+            List<string> fragenList = new List<string>();
+            
+            string connStr = "Server=localhost;Database=Quiz;User=root;Password='';";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            string sql = $"SELECT {fragenArt} FROM frage ORDER BY RAND() LIMIT 10; ";
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            {
+                
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        for(int i = 0; i < reader.FieldCount; i++)
+                        {
+                            string value = Convert.ToString(reader[i]);
+                            fragenList.Add(value);
+                        }
+                        
+
+                    }
+                }
+            }
+                return fragenList;
+           
+        }
+        
+    }   
 }
