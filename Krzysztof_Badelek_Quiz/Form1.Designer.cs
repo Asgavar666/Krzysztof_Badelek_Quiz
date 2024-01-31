@@ -38,6 +38,8 @@
             LbFrage = new Label();
             RbAntwort4 = new RadioButton();
             BtnNeueFrage = new Button();
+            PbFlagge = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PbFlagge).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -89,6 +91,7 @@
             RbAntwort1.TabIndex = 5;
             RbAntwort1.TabStop = true;
             RbAntwort1.UseVisualStyleBackColor = true;
+            RbAntwort1.TextChanged += RbAntwort1_TextChanged;
             // 
             // RbAntwort2
             // 
@@ -99,6 +102,7 @@
             RbAntwort2.TabIndex = 6;
             RbAntwort2.TabStop = true;
             RbAntwort2.UseVisualStyleBackColor = true;
+            RbAntwort2.TextChanged += RbAntwort2_TextChanged;
             // 
             // RbAntwort3
             // 
@@ -109,12 +113,13 @@
             RbAntwort3.TabIndex = 7;
             RbAntwort3.TabStop = true;
             RbAntwort3.UseVisualStyleBackColor = true;
+            RbAntwort3.TextChanged += RbAntwort3_TextChanged;
             // 
             // LbFrage
             // 
             LbFrage.AutoSize = true;
             LbFrage.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            LbFrage.Location = new Point(481, 134);
+            LbFrage.Location = new Point(412, 85);
             LbFrage.Name = "LbFrage";
             LbFrage.Size = new Size(0, 45);
             LbFrage.TabIndex = 8;
@@ -129,6 +134,7 @@
             RbAntwort4.TabIndex = 9;
             RbAntwort4.TabStop = true;
             RbAntwort4.UseVisualStyleBackColor = true;
+            RbAntwort4.TextChanged += RbAntwort4_TextChanged;
             // 
             // BtnNeueFrage
             // 
@@ -140,11 +146,20 @@
             BtnNeueFrage.UseVisualStyleBackColor = true;
             BtnNeueFrage.Click += BtnNeueFrage_Click;
             // 
+            // PbFlagge
+            // 
+            PbFlagge.Location = new Point(412, 166);
+            PbFlagge.Name = "PbFlagge";
+            PbFlagge.Size = new Size(100, 50);
+            PbFlagge.TabIndex = 11;
+            PbFlagge.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(PbFlagge);
             Controls.Add(BtnNeueFrage);
             Controls.Add(RbAntwort4);
             Controls.Add(LbFrage);
@@ -157,6 +172,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Quiz";
+            ((System.ComponentModel.ISupportInitialize)PbFlagge).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -173,5 +189,6 @@
         private Label LbFrage;
         private RadioButton RbAntwort4;
         private Button BtnNeueFrage;
+        private PictureBox PbFlagge;
     }
 }

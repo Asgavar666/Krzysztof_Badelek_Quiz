@@ -1,3 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
 namespace Krzysztof_Badelek_Quiz
 {
     public partial class Form1 : Form
@@ -19,8 +27,25 @@ namespace Krzysztof_Badelek_Quiz
             {
                 CbFragen.Items.Add(item);
             }
+            RadioButton[] radioButtons = new RadioButton[4] { RbAntwort1, RbAntwort2, RbAntwort3, RbAntwort4 };
+            AssignImagesToRadioButtons(radioButtons);
         }
 
+
+        public void AssignImagesToRadioButtons(RadioButton[] radioButtons)
+        {
+            foreach (RadioButton rb in radioButtons)
+            {
+                if (rb.Text.Length == 2)
+                {
+                    string imagePath = Path.Combine("Resources/16", rb.Text + ".jpg");
+                    if (File.Exists(imagePath))
+                    {
+                        rb.Image = Image.FromFile(imagePath);
+                    }
+                }
+            }
+        }
         public void AssignStringsToRadioButtons(string correctAnswer, List<string> wrongAnswers, params RadioButton[] radioButtons)
         {
             listRandomAntworten = falscheAntworten;
@@ -42,8 +67,10 @@ namespace Krzysztof_Badelek_Quiz
             for (int i = 0; i < radioButtons.Length; i++)
             {
                 radioButtons[i].Text = listRandomAntworten[i];
+
             }
         }
+
 
 
 
@@ -92,6 +119,7 @@ namespace Krzysztof_Badelek_Quiz
 
 
                 LbFrage.Text = randomFrage;
+
                 listRandomFragen.RemoveAt(index);
             }
 
@@ -115,6 +143,150 @@ namespace Krzysztof_Badelek_Quiz
 
             var wrongAnswers = falscheAntworten;
             AssignStringsToRadioButtons(correctAnswer, wrongAnswers, RbAntwort1, RbAntwort2, RbAntwort3, RbAntwort4);
+
+            if (LbFrage.Text.Length == 2)
+            {
+                string imageName = LbFrage.Text;
+                string completeImageName = $"{imageName}.png";
+
+
+                
+
+                Image myImage = null;
+
+                string resourceName = "Krzysztof_Badelek_Quiz.Resources." + completeImageName;
+
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        myImage = Image.FromStream(stream);
+                        PbFlagge.Image = myImage;
+                        LbFrage.Text = "";
+                        
+                    }
+                }
+
+
+
+            }
+        }
+
+        
+        private void RbAntwort1_TextChanged(object sender, EventArgs e)
+        {
+            if (RbAntwort1.Text.Length == 2)
+            {
+                string imageName = RbAntwort1.Text;
+                string completeImageName = $"{imageName}.png";
+
+
+                // string resourceName = $"{completeImageName}";
+
+                Image myImage = null;
+
+                string resourceName = "Krzysztof_Badelek_Quiz.Resources." + completeImageName;
+
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        myImage = Image.FromStream(stream);
+                        RbAntwort1.Image = myImage;
+                        RbAntwort1.Text = "";
+                    }
+                }
+
+
+
+            }
+        }
+
+        private void RbAntwort2_TextChanged(object sender, EventArgs e)
+        {
+            if (RbAntwort2.Text.Length == 2)
+            {
+                string imageName = RbAntwort2.Text;
+                string completeImageName = $"{imageName}.png";
+
+
+                // string resourceName = $"{completeImageName}";
+
+                Image myImage = null;
+
+                string resourceName = "Krzysztof_Badelek_Quiz.Resources." + completeImageName;
+
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        myImage = Image.FromStream(stream);
+                        RbAntwort2.Image = myImage;
+                        RbAntwort2.Text = "";
+                    }
+                }
+
+
+
+            }
+        }
+
+        private void RbAntwort3_TextChanged(object sender, EventArgs e)
+        {
+            if (RbAntwort3.Text.Length == 2)
+            {
+                string imageName = RbAntwort3.Text;
+                string completeImageName = $"{imageName}.png";
+
+
+                // string resourceName = $"{completeImageName}";
+
+                Image myImage = null;
+
+                string resourceName = "Krzysztof_Badelek_Quiz.Resources." + completeImageName;
+
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        myImage = Image.FromStream(stream);
+                        RbAntwort3.Image = myImage;
+                        RbAntwort3.Text = "";
+                    }
+                }
+
+
+
+            }
+        }
+
+        private void RbAntwort4_TextChanged(object sender, EventArgs e)
+        {
+            if (RbAntwort4.Text.Length == 2)
+            {
+                string imageName = RbAntwort4.Text;
+                string completeImageName = $"{imageName}.png";
+
+
+                // string resourceName = $"{completeImageName}";
+
+                Image myImage = null;
+
+                string resourceName = "Krzysztof_Badelek_Quiz.Resources." + completeImageName;
+
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                {
+                    if (stream != null)
+                    {
+                        myImage = Image.FromStream(stream);
+                        RbAntwort4.Image = myImage;
+                        RbAntwort4.Text = "";
+                    }
+                }
+
+
+
+            }
         }
     }
 }
