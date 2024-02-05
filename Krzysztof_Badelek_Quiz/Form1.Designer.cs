@@ -39,6 +39,9 @@
             RbAntwort4 = new RadioButton();
             BtnNeueFrage = new Button();
             PbFlagge = new PictureBox();
+            label2 = new Label();
+            BtnCheck = new Button();
+            TbUser = new TextBox();
             ((System.ComponentModel.ISupportInitialize)PbFlagge).BeginInit();
             SuspendLayout();
             // 
@@ -51,12 +54,11 @@
             label1.Size = new Size(226, 45);
             label1.TabIndex = 0;
             label1.Text = "Fragen wählen";
-            label1.Click += label1_Click;
             // 
             // CbFragen
             // 
             CbFragen.FormattingEnabled = true;
-            CbFragen.Location = new Point(53, 85);
+            CbFragen.Location = new Point(53, 193);
             CbFragen.Name = "CbFragen";
             CbFragen.Size = new Size(132, 23);
             CbFragen.TabIndex = 2;
@@ -66,7 +68,7 @@
             // CbAntworten
             // 
             CbAntworten.FormattingEnabled = true;
-            CbAntworten.Location = new Point(53, 134);
+            CbAntworten.Location = new Point(53, 222);
             CbAntworten.Name = "CbAntworten";
             CbAntworten.Size = new Size(132, 23);
             CbAntworten.TabIndex = 3;
@@ -74,11 +76,11 @@
             // 
             // BtnRundeStarten
             // 
-            BtnRundeStarten.Location = new Point(53, 193);
+            BtnRundeStarten.Location = new Point(53, 282);
             BtnRundeStarten.Name = "BtnRundeStarten";
             BtnRundeStarten.Size = new Size(132, 23);
             BtnRundeStarten.TabIndex = 4;
-            BtnRundeStarten.Text = "Runde starten";
+            BtnRundeStarten.Text = "Daten speichern";
             BtnRundeStarten.UseVisualStyleBackColor = true;
             BtnRundeStarten.Click += BtnRundeStarten_Click;
             // 
@@ -138,11 +140,11 @@
             // 
             // BtnNeueFrage
             // 
-            BtnNeueFrage.Location = new Point(406, 315);
+            BtnNeueFrage.Location = new Point(386, 294);
             BtnNeueFrage.Name = "BtnNeueFrage";
-            BtnNeueFrage.Size = new Size(75, 23);
+            BtnNeueFrage.Size = new Size(140, 23);
             BtnNeueFrage.TabIndex = 10;
-            BtnNeueFrage.Text = "Neue Frage";
+            BtnNeueFrage.Text = "Frage stellen";
             BtnNeueFrage.UseVisualStyleBackColor = true;
             BtnNeueFrage.Click += BtnNeueFrage_Click;
             // 
@@ -154,11 +156,41 @@
             PbFlagge.TabIndex = 11;
             PbFlagge.TabStop = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(673, 75);
+            label2.Name = "label2";
+            label2.Size = new Size(0, 15);
+            label2.TabIndex = 12;
+            label2.Visible = false;
+            // 
+            // BtnCheck
+            // 
+            BtnCheck.Location = new Point(386, 333);
+            BtnCheck.Name = "BtnCheck";
+            BtnCheck.Size = new Size(140, 23);
+            BtnCheck.TabIndex = 13;
+            BtnCheck.Text = "Check";
+            BtnCheck.UseVisualStyleBackColor = true;
+            BtnCheck.Click += BtnCheck_Click;
+            // 
+            // TbUser
+            // 
+            TbUser.Location = new Point(53, 164);
+            TbUser.Name = "TbUser";
+            TbUser.Size = new Size(132, 23);
+            TbUser.TabIndex = 14;
+            TbUser.Text = "Spieler Name";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(TbUser);
+            Controls.Add(BtnCheck);
+            Controls.Add(label2);
             Controls.Add(PbFlagge);
             Controls.Add(BtnNeueFrage);
             Controls.Add(RbAntwort4);
@@ -172,6 +204,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Quiz";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)PbFlagge).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -190,5 +223,8 @@
         private RadioButton RbAntwort4;
         private Button BtnNeueFrage;
         private PictureBox PbFlagge;
+        private Label label2;
+        private Button BtnCheck;
+        private TextBox TbUser;
     }
 }

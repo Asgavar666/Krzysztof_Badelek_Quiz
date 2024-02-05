@@ -13,11 +13,14 @@ namespace Krzysztof_Badelek_Quiz
         public List<string> Kategorien = new List<string>();
         public List<string> listRandomFragen = new List<string>();
         public string richtigeAntwort = "";
+        public int richtigeAntwortenAufzaehler;
         public List<string> falscheAntworten = new List<string>();
         public List<string> listRandomAntworten = new List<string>();
+
         public Form1()
         {
             InitializeComponent();
+            //IstAntwortRichtig();
 
             Kategorien.Add("Land");
             Kategorien.Add("Hauptstadt");
@@ -31,7 +34,7 @@ namespace Krzysztof_Badelek_Quiz
             AssignImagesToRadioButtons(radioButtons);
         }
 
-
+        
         public void AssignImagesToRadioButtons(RadioButton[] radioButtons)
         {
             foreach (RadioButton rb in radioButtons)
@@ -74,10 +77,7 @@ namespace Krzysztof_Badelek_Quiz
 
 
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
         private void CbFragen_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Wenn eine Option ausgewählt, blende diese Option in Antworten aus
@@ -101,10 +101,23 @@ namespace Krzysztof_Badelek_Quiz
             {
 
                 string frage = CbFragen.Text.ToUpper();
-                // string antwort = CbAntworten.Text.ToUpper();
+               
                 listRandomFragen = datenbank.GetRandomFragen(frage);
-                // listRandomAntworten = datenbank.GetRandomAntwort(antwort, frage);
+                
             }
+
+            string user = TbUser.Text.ToString();
+            if (user.Length > 0)
+            {
+                if (!datenbank.FindInDb(user))
+                {
+                    datenbank.SaveSpieler(user);
+                }
+
+            }
+            CbFragen.Visible = false;
+            CbAntworten.Visible = false;
+            TbUser.Visible = false;
         }
 
 
@@ -112,6 +125,7 @@ namespace Krzysztof_Badelek_Quiz
         {
             Random random = new Random();
             Datenbank datenbank = new Datenbank();
+            
             if (listRandomFragen.Count > 0)
             {
                 int index = random.Next(listRandomFragen.Count);
@@ -125,7 +139,16 @@ namespace Krzysztof_Badelek_Quiz
 
             else
             {
-                LbFrage.Text = "Diese Runde ist beendet";
+                
+                string spieler = TbUser.Text.ToString(); 
+                
+                datenbank.UpdatePoints(spieler, richtigeAntwortenAufzaehler);
+          
+                
+                RundeBeendet rundeBeendet = new RundeBeendet();
+                rundeBeendet.UpdatePoints(richtigeAntwortenAufzaehler);
+                rundeBeendet.Show();
+                LbFrage.Text = "Runde Fertig";
             }
 
 
@@ -138,6 +161,7 @@ namespace Krzysztof_Badelek_Quiz
             string antwort = CbAntworten.Text.ToUpper();
             string frageValue = LbFrage.Text;
             richtigeAntwort = datenbank.GetRichtigeAntwort(frage, antwort, frageValue);
+            label2.Text = richtigeAntwort.ToString();
             falscheAntworten = datenbank.GetRandomAntwort(frage, antwort, frageValue);
             string correctAnswer = richtigeAntwort;
 
@@ -150,7 +174,7 @@ namespace Krzysztof_Badelek_Quiz
                 string completeImageName = $"{imageName}.png";
 
 
-                
+
 
                 Image myImage = null;
 
@@ -163,7 +187,7 @@ namespace Krzysztof_Badelek_Quiz
                         myImage = Image.FromStream(stream);
                         PbFlagge.Image = myImage;
                         LbFrage.Text = "";
-                        
+
                     }
                 }
 
@@ -171,8 +195,43 @@ namespace Krzysztof_Badelek_Quiz
 
             }
         }
+        public bool IstAntwortRichtig()
+        {
+            RadioButton[] radioButtons = new RadioButton[4] { RbAntwort1, RbAntwort2, RbAntwort3, RbAntwort4 };
+            string antwortRichtig = label2.Text;
+            for (int i = 0; i < radioButtons.Length; i++)
+            {
+                if (radioButtons[i].Checked && radioButtons[i].Text == antwortRichtig)
+                {
+                    
+                    return true;
+                    
+                }
+            }
+            return false;
+           
+        }
 
-        
+        private void BtnCheck_Click(object sender, EventArgs e)
+        {
+            
+            if (IstAntwortRichtig())
+            {
+                MessageBox.Show("Richtig!");
+                richtigeAntwortenAufzaehler++;
+            }
+            else
+            {
+                MessageBox.Show("Falsch!");
+            }
+            RbAntwort1.Checked = false;
+            RbAntwort2.Checked = false;
+            RbAntwort3.Checked = false;
+            RbAntwort4.Checked = false;
+
+        }
+
+
         private void RbAntwort1_TextChanged(object sender, EventArgs e)
         {
             if (RbAntwort1.Text.Length == 2)
@@ -288,5 +347,12 @@ namespace Krzysztof_Badelek_Quiz
 
             }
         }
+ 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

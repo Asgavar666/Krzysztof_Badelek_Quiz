@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace Krzysztof_Badelek_Quiz
@@ -15,6 +17,69 @@ namespace Krzysztof_Badelek_Quiz
         public Datenbank()
         {
 
+        }
+        public DataSet PullDataFromDB()
+        {
+            string connectionString = "Server=localhost;Database=Quiz;User=root;Password='';";
+            string query = "SELECT Name, Punkte FROM spieler ORDER BY Punkte DESC;";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
+                {
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    return ds;
+                }
+            }
+        }
+
+        public void UpdatePoints(string spieler, int punkte)
+        {
+            string connStr = "Server=localhost;Database=Quiz;User=root;Password='';";
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                string sql = $"UPDATE Spieler SET Punkte = GREATEST(@punkte, Punkte) WHERE Name = '@spieler';";
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@spieler", spieler);
+                    cmd.Parameters.AddWithValue("@punkte", punkte);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        public void SaveSpieler(string Spieler)
+        {
+            string connStr = "Server=localhost;Database=Quiz;User=root;Password='';";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            string sql = $"INSERT INTO Spieler(Name) VALUES (@Spieler);";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Spieler", Spieler);
+            cmd.ExecuteNonQuery();
+            
+          
+            conn.Close();
+
+            
+        }
+        public bool FindInDb(string Spieler)
+        {
+            string connStr = "Server=localhost;Database=Quiz;User=root;Password='';";
+            MySqlConnection conn = new MySqlConnection(connStr);
+            conn.Open();
+
+            string sql = $"SELECT * FROM spieler WHERE Name = @spieler;";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            
+            cmd.Parameters.AddWithValue("@Spieler", Spieler);
+            var result = Convert.ToInt32(cmd.ExecuteScalar());
+            conn.Close();
+            return result > 0;
+            
         }
         public string GetRichtigeAntwort(string frage, string antwort, string frageValue)
         {
